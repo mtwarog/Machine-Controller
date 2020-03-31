@@ -1,0 +1,24 @@
+{
+  "name": "machine_interpreter",
+  "version": "1.0.0",
+  "description": "Production line simulator controlled by simple interpreted language",
+  "main": "productionLine.js",
+  "directories": {
+    "test": "test",
+    "build": "build"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "npm run test; npm run build:js; npm run integrate",
+    "build:js": "browserify src/productionLine.js -o build/productionLine.js; npm run minify:js",
+    "minify:js": "uglifyjs build/productionLine.js -o build/productionLine.min.js",
+    "integrate": "cp build/productionLine.min.js webapp/script/productionLine.min.js"
+  },
+  "author": "MT",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "jest": "^25.1.0",
+    "uglify-es": "^3.3.9"
+  }
+}
